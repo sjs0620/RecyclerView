@@ -1,5 +1,6 @@
 package com.example.edu.recyclerview;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -13,12 +14,30 @@ public class RecyclerViewActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
     RecyclerAdapter adapter;
+    MyDBOpenHelper dbHelper;
+    SQLiteDatabase mdb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recycler_view);
 
+        dbHelper = new MyDBOpenHelper(this,"awe.db",null,1);
+        mdb = dbHelper.getWritableDatabase();
+
+//        setData();  //data는 db로 set..
+
+        recyclerView = (RecyclerView)findViewById(R.id.recycler_view);
+        layoutManager = new LinearLayoutManager(this);
+//        layoutManager = new GridLayoutManager(this,2);
+        recyclerView.setLayoutManager(layoutManager);
+//        adapter = new RecyclerAdapter(arrayList);
+        adapter = new RecyclerAdapter(mdb);
+        recyclerView.setAdapter(adapter);
+    }
+
+    public void setData(){
+// data는 db로 바꿈
         ArrayList<HashMap<String,Object>> arrayList =
                 new ArrayList<HashMap<String, Object>>();
         HashMap<String, Object> hashMap=null;
@@ -42,7 +61,7 @@ public class RecyclerViewActivity extends AppCompatActivity {
         hashMap.put("detail","Item three details");
         hashMap.put("image",R.drawable.android_image_3);
         arrayList.add(hashMap);
-        
+
 
         hashMap = new HashMap<String, Object>();
         hashMap.put("title","Chapter Four");
@@ -50,11 +69,5 @@ public class RecyclerViewActivity extends AppCompatActivity {
         hashMap.put("image",R.drawable.android_image_4);
         arrayList.add(hashMap);
 
-        recyclerView = (RecyclerView)findViewById(R.id.recycler_view);
- //       layoutManager = new LinearLayoutManager(this);
-        layoutManager = new GridLayoutManager(this,2);
-        recyclerView.setLayoutManager(layoutManager);
-        adapter = new RecyclerAdapter(arrayList);
-        recyclerView.setAdapter(adapter);
     }
 }
