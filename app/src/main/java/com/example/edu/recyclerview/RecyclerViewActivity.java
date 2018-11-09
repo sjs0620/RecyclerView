@@ -42,6 +42,7 @@ public class RecyclerViewActivity extends AppCompatActivity {
         hashMap.put("detail","Item three details");
         hashMap.put("image",R.drawable.android_image_3);
         arrayList.add(hashMap);
+        
 
         hashMap = new HashMap<String, Object>();
         hashMap.put("title","Chapter Four");
