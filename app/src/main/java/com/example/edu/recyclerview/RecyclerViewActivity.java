@@ -25,6 +25,7 @@ public class RecyclerViewActivity extends AppCompatActivity {
         hashMap = new HashMap<String, Object>();
 
         //Add Data
+        hashMap = new HashMap<String, Object>();
         hashMap.put("title","Chapter One");
         hashMap.put("detail","Item one details");
         hashMap.put("image",R.drawable.android_image_1);
@@ -34,6 +35,18 @@ public class RecyclerViewActivity extends AppCompatActivity {
         hashMap.put("title","Chapter Two");
         hashMap.put("detail","Item two details");
         hashMap.put("image",R.drawable.android_image_2);
+        arrayList.add(hashMap);
+        //Add Data
+        hashMap = new HashMap<String, Object>();
+        hashMap.put("title","Chapter Three");
+        hashMap.put("detail","Item three details");
+        hashMap.put("image",R.drawable.android_image_3);
+        arrayList.add(hashMap);
+
+        hashMap = new HashMap<String, Object>();
+        hashMap.put("title","Chapter Four");
+        hashMap.put("detail","Item four details");
+        hashMap.put("image",R.drawable.android_image_4);
         arrayList.add(hashMap);
 
         recyclerView = (RecyclerView)findViewById(R.id.recycler_view);
